@@ -4,7 +4,7 @@ namespace SimplyLoggy
 {
     public class Logger : ILogger
     {
-        public void Log()
+        public void Log(string text)
         {
             throw new NotImplementedException();
         }
