@@ -4,7 +4,8 @@ namespace SimplyLoggy
 {
     public class FileLogger : ILogger
     {
-        private const string FilePath = @"C:\Temp\SimplyLoggy.txt";
+        //public string FilePath = @"C:\Temp\SimplyLoggy.txt";
+        public string FilePath;
 
         public void Log(string text)
         {
@@ -12,6 +13,12 @@ namespace SimplyLoggy
             {
                 streamWriter.WriteLine(text);
             }
+        }
+
+        public FileLogger LogFilePath(string filePath)
+        {
+            FilePath = filePath;
+            return this;
         }
     }
 }
