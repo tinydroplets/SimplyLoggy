@@ -1,18 +1,24 @@
 ﻿using System.IO;
+using System.IO.Abstractions;
 
 namespace SimplyLoggy
 {
-    public class FileLogger : ILogger
+    public class FileLogger 
     {
         //public string FilePath = @"C:\Temp\SimplyLoggy.txt";
         public string FilePath;
+        private FileWrapper _file; 
 
-        public void Log(string text)
+
+        public FileLogger(FileWrapper file)
         {
-            using (var streamWriter = new StreamWriter(FilePath))
-            {
-                streamWriter.WriteLine(text);
-            }
+            _file = file;
+        }
+
+        public FileLogger Log(string text)
+        {
+             _file.WriteAllText(FilePath, text);
+            return this;
         }
 
         public FileLogger LogFilePath(string filePath)
