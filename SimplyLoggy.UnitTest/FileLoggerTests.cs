@@ -5,6 +5,13 @@ namespace SimplyLoggy.UnitTest
     [TestClass]
     public class FileLoggerTests
     {
+        [TestInitialize]
+        public void TestInitialize()
+        {
+            var fileOperations = new FileOperations();
+            fileOperations.FilePath = @"C:\temp\UnitTests\TestFile.txt";
+        }
+
         [TestMethod]
         public void TestSpecifyFilePath()
         {
@@ -20,6 +27,12 @@ namespace SimplyLoggy.UnitTest
             //would you read the file and then check that the message was written correctly?
             var fileLogger = new FileLogger();
             fileLogger.Log("simple message with text");
+
+            var fileOperations = new FileOperations();
+
+            var textFromFile = fileOperations.Read();
+
+            Assert.AreEqual("Hello, how are you?", textFromFile);
         }
     }
 }

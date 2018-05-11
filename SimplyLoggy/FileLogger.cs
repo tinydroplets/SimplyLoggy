@@ -7,17 +7,18 @@ namespace SimplyLoggy
     {
         //public string FilePath = @"C:\Temp\SimplyLoggy.txt";
         public string FilePath;
-        private FileWrapper _file; 
+        //private FileWrapper _file; 
+        private IFileOperations _fileOperations;
 
 
-        public FileLogger(FileWrapper file)
+        public FileLogger(IFileOperations fileOperations)
         {
-            _file = file;
+            _fileOperations = fileOperations;
         }
 
         public FileLogger Log(string text)
         {
-             _file.WriteAllText(FilePath, text);
+             _fileOperations.Write(text);
             return this;
         }
 
